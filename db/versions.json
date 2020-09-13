@@ -1,0 +1,26 @@
+{
+  "version1": {
+    "version": "0.1",
+    "changes": "added healing when sucessfully dispelling",
+    "creationDate": "2020-09-12",
+    "imgUrl": "https://i.ibb.co/mF1QTnj/wands-out.png"
+  },
+  "version2": {
+    "version": "0.2",
+    "changes": "removed requirement of face up card",
+    "creationDate": "2020-09-13",
+    "imgUrl": "https://i.ibb.co/mF1QTnj/wands-out.png"
+  },
+  "version3": {
+    "version": "0.8",
+    "changes": "adjusted scoring to make badlands less powerful",
+    "creationDate": "2020-09-12",
+    "imgUrl": "https://i.ibb.co/4Yst9Z1/dice-kingdoms.png"
+  },
+  "version4": {
+    "version": "0.8",
+    "changes": "adjusted scoring to only the top two getting points",
+    "creationDate": "2020-09-12",
+    "imgUrl": "https://i.ibb.co/4Yst9Z1/dice-kingdoms.png"
+  }
+}

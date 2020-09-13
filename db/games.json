@@ -1,0 +1,17 @@
+{
+  "game1": {
+    "uid": "fGtrMadZDnfesq72kjwUG6i4VK43",
+    "description":"Deckbuilding Bluffing game! Reduce your opponent to 0 hit points, bluffing attacks and buying power.",
+    "name": "Wands Out",
+    "creationDate": "2020-09-12",
+    "imgUrl": "https://i.ibb.co/mF1QTnj/wands-out.png"
+  },
+  "game2": {
+    "uid": "fGtrMadZDnfesq72kjwUG6i4VK43",
+    "description":"Area control game with dice as controlling pieces.",
+    "name": "Dice Kingdoms",
+    "creationDate": "2019-09-12",
+    "imgUrl": "https://i.ibb.co/4Yst9Z1/dice-kingdoms.png"
+  }
+    
+}

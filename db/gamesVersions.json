@@ -1,0 +1,17 @@
+{
+  "gamesVersions1": {
+    "gameId": "game1",
+    "versionId": "version1"
+  },
+  "gamesVersions2": {
+    "gameId": "game1",
+    "versionId": "version2"
+  },
+  "gamesVersions3": {
+    "gameId": "game2",
+    "versionId": "version3"
+  }, "gamesVersions4": {
+    "gameId": "game2",
+    "versionId": "version4"
+  }
+}

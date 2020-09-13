@@ -1,0 +1,34 @@
+{
+  "versionPlaytest1": {
+    "playtestId": "playtest1",
+    "versionId": "version1"
+  },
+  "versionPlaytest2": {
+    "playtestId": "playtest2",
+    "versionId": "version1"
+  },
+  "versionPlaytest3": {
+    "playtestId": "playtest3",
+    "versionId": "version2"
+  }, 
+  "versionPlaytest4": {
+    "playtestId": "playtest4",
+    "versionId": "version2"
+  },
+  "versionPlaytest5": {
+    "playtestId": "playtest5",
+    "versionId": "version3"
+  },
+  "versionPlaytest6": {
+    "playtestId": "playtest6",
+    "versionId": "version3"
+  },
+  "versionPlaytest7": {
+    "playtestId": "playtest7",
+    "versionId": "version4"
+  }, 
+  "versionPlaytest8": {
+    "playtestId": "playtest8",
+    "versionId": "version4"
+  }
+}
