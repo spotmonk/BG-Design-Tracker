@@ -14,6 +14,7 @@ import fbConnection from '../helpers/data/connection';
 import MyNavBar from '../components/pages/MyNavBar/MyNavBar';
 import Auth from '../components/pages/Auth/Auth';
 import Home from '../components/pages/Home/Home';
+import GameDetail from '../components/pages/GameDetail/GameDetail';
 
 fbConnection();
 
@@ -52,6 +53,7 @@ const App = () => {
                 <Switch>
                   <PrivateRoute path="/home" component={Home} authed={authed} />
                   {/* <PrivateRoute path="/newGame" component={NewItem} authed={authed} /> */}
+                  <PrivateRoute path="/game/:gameId" component={GameDetail} authed={authed} />
                   <PublicRoute path="/auth" component={Auth} authed={authed} />
                   <Redirect from="*" to="/home" />
                 </Switch>
