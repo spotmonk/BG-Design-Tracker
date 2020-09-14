@@ -16,7 +16,7 @@ const Home = () => {
   const gameCards = games.map((game) => <GameCard ed={false} key={game.id} game={game} />);
 
   return (
-    <div className='card-columns'>
+    <div className='card-deck'>
       {gameCards}
     </div>
   );
