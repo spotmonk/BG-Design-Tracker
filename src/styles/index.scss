@@ -1,3 +1,4 @@
+@import "~react-datepicker/dist/react-datepicker.css";
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -5,4 +6,14 @@
 
 body {
   background-color: $favColor;
+}
+
+.edbtn {
+  width: 16rem;
+  margin: 2px;
+}
+
+.vl {
+  border-left: 1px solid grey;
+  height: auto;
 }
