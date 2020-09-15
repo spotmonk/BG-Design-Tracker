@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 const GameCard = (props) => {
   const { version } = props;
-
+  console.warn(props);
   return (
   <div>
       <div className="card m-3" style={{ width: '18rem' }}>
       <Link to={ props.ed
-        ? ''
+        ? '#'
         : `/version/${version.id}`}
       style={{ textDecoration: 'none', color: 'black' }}>
         <img src={version.imgUrl} className="card-img-top" alt={version.version} />

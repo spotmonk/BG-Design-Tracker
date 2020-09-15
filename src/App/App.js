@@ -16,6 +16,7 @@ import Auth from '../components/pages/Auth/Auth';
 import Home from '../components/pages/Home/Home';
 import GameDetail from '../components/pages/GameDetail/GameDetail';
 import VersionDetail from '../components/pages/VersionDetail/VersionDetail';
+import NewGame from '../components/pages/NewGame/NewGame';
 
 fbConnection();
 
@@ -53,7 +54,7 @@ const App = () => {
               <div className="container">
                 <Switch>
                   <PrivateRoute path="/home" component={Home} authed={authed} />
-                  {/* <PrivateRoute path="/newGame" component={NewItem} authed={authed} /> */}
+                  <PrivateRoute path="/newGame" component={NewGame} authed={authed} />
                   <PrivateRoute path="/game/:gameId" component={GameDetail} authed={authed} />
                   <PrivateRoute path="/version/:versionId" component={VersionDetail} authed={authed} />
                   <PublicRoute path="/auth" component={Auth} authed={authed} />

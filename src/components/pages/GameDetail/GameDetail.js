@@ -29,7 +29,8 @@ const GameDetail = (props) => {
           <GameCard ed={true} game={game} />
         </div>
       </div>
-      <div className="versions col-8 card-deck">
+      <div className=" col-8 card-group">
+      <button className="edbtn btn btn-success"><i className="fas fa-plus fa-9x"></i><br/><h3>New Version</h3></button>
         {versionCards}
       </div>
     </div>
