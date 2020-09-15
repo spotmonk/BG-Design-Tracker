@@ -1,20 +1,24 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const GameCard = (props) => {
-  const { game } = props;
+  const { version } = props;
 
   return (
   <div>
       <div className="card m-3" style={{ width: '18rem' }}>
       <Link to={ props.ed
         ? ''
-        : `/game/${game.id}`}
+        : `/version/${version.id}`}
       style={{ textDecoration: 'none', color: 'black' }}>
-        <img src={game.imgUrl} className="card-img-top" alt={game.name} />
+        <img src={version.imgUrl} className="card-img-top" alt={version.version} />
         <div className="card-body">
-          <h5 className="card-title">{game.name}</h5>
-          <p>{game.description}</p>
-          <h6>Created {game.creationDate}</h6>
+          {props.game
+            ? <h5 className="card-title">{props.game.name}</h5>
+            : ''}
+          <h5 className="card-title">{version.version}</h5>
+          <p>{version.changes}</p>
+          <h6>Created {version.creationDate}</h6>
         </div>
         </Link>
         { props.ed

@@ -3,6 +3,8 @@ import GameCard from '../../shared/GameCard/GameCard';
 import gameData from '../../../helpers/data/gameData';
 import smash from '../../../helpers/data/smash';
 
+import VersionCard from '../../shared/VersionCard/VersionCard';
+
 const GameDetail = (props) => {
   const [game, setGame] = useState({});
   const [versions, setVersions] = useState([]);
@@ -17,6 +19,8 @@ const GameDetail = (props) => {
       .catch((err) => console.error('no get versions', err));
   }, [props.match.params]);
 
+  const versionCards = versions.map((version) => <VersionCard ed={false} key={version.id} game={game} version={version} />);
+
   return (
     <div className="container">
     <div className="col-12 d-flex flex-row flex-wrap h-100">
@@ -26,9 +30,7 @@ const GameDetail = (props) => {
         </div>
       </div>
       <div className="versions col-8 card-deck">
-      <GameCard ed={true} game={game} />
-      <GameCard ed={true} game={game} />
-      <GameCard ed={true} game={game} />
+        {versionCards}
       </div>
     </div>
     </div>

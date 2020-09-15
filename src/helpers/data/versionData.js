@@ -10,4 +10,6 @@ const getAllVersions = () => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default { getAllVersions };
+const getVersionById = (versionId) => axios.get(`${baseUrl}/versions/${versionId}.json`);
+
+export default { getAllVersions, getVersionById };
