@@ -6,7 +6,7 @@ const GameCard = (props) => {
   console.warn(props);
   return (
   <div>
-      <div className="card m-3" style={{ width: '18rem' }}>
+      <div className="card m-3" style={{ minWidth: '18rem', maxWidth: '18rem'  }}>
       <Link to={ props.ed
         ? '#'
         : `/version/${version.id}`}

@@ -21,15 +21,15 @@ const GameDetail = (props) => {
   // const versionCards = versions.map((version) => <VersionCard ed={false} key={version.id} game={game} version={version} />);
 
   return (
-    <div className="container">
+<div className="container">
     <div className="col-12 d-flex flex-row flex-wrap h-100">
-      <div className="col-4">
+      <div className="col-xl-4">
         <div>
           <VersionCard ed={true} version={version} />
         </div>
       </div>
-      <div className="playtests col-8 card-group">
-      <button className="edbtn btn btn-success"><i className="fas fa-plus fa-9x"></i><br/><h3>New Playtest</h3></button>
+      <div className=" col-xl-8 card-deck">
+      <div className="card m-3" style={{ minWidth: '18rem', maxWidth: '18rem' }}><i className="fas fa-plus fa-9x"></i><br/><h3>New Playtest</h3></div>
         {/* {versionCards} */}
       </div>
     </div>

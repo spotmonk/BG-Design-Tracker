@@ -24,13 +24,13 @@ const GameDetail = (props) => {
   return (
     <div className="container">
     <div className="col-12 d-flex flex-row flex-wrap h-100">
-      <div className="col-4">
+      <div className="col-xl-4">
         <div>
           <GameCard ed={true} game={game} />
         </div>
       </div>
-      <div className=" col-8 card-group">
-      <button className="edbtn btn btn-success"><i className="fas fa-plus fa-9x"></i><br/><h3>New Version</h3></button>
+      <div className=" col-xl-8 card-deck">
+      <div className="card m-3" style={{ minWidth: '18rem', maxWidth: '18rem' }}><i className="fas fa-plus fa-9x"></i><br/><h3>New version</h3></div>
         {versionCards}
       </div>
     </div>
