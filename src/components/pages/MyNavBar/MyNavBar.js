@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { NavLink as RRNavLink } from 'react-router-dom';
+import { NavLink as RRNavLink } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -43,7 +43,9 @@ const MyNavBar = (props) => {
     return (
       <Nav className="ml-auto" navbar>
         <NavItem>
-        <NavLink ><h2>New Game</h2></NavLink>
+        <NavLink tag={RRNavLink} to="/NewGame">
+          <h4>New Game</h4>
+        </NavLink>
         </NavItem>
         <NavItem>
           <NavLink >{loadLogOut()}</NavLink>

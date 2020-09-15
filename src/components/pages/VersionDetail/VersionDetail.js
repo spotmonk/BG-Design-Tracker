@@ -23,12 +23,13 @@ const GameDetail = (props) => {
   return (
     <div className="container">
     <div className="col-12 d-flex flex-row flex-wrap h-100">
-      <div className="versions col-4">
+      <div className="col-4">
         <div>
           <VersionCard ed={true} version={version} />
         </div>
       </div>
-      <div className="versions col-8 card-deck">
+      <div className="playtests col-8 card-group">
+      <button className="edbtn btn btn-success"><i className="fas fa-plus fa-9x"></i><br/><h3>New Playtest</h3></button>
         {/* {versionCards} */}
       </div>
     </div>
