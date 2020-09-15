@@ -12,4 +12,6 @@ const getGamesByUid = (uid) => new Promise((resolve, reject) => {
 
 const getGameById = (gameId) => axios.get(`${baseUrl}/games/${gameId}.json`);
 
-export default { getGamesByUid, getGameById };
+const addGame = (gameObj) => axios.post(`${baseUrl}/games.json`, gameObj);
+
+export default { getGamesByUid, getGameById, addGame };
