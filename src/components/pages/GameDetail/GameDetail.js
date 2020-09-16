@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import GameCard from '../../shared/GameCard/GameCard';
 import gameData from '../../../helpers/data/gameData';
 import smash from '../../../helpers/data/smash';
@@ -30,7 +31,11 @@ const GameDetail = (props) => {
         </div>
       </div>
       <div className=" col-xl-8 card-deck">
-      <div className="card m-3" style={{ minWidth: '18rem', maxWidth: '18rem' }}><i className="fas fa-plus fa-9x"></i><br/><h3>New version</h3></div>
+        <Link to={{ pathname: '/newversion/', gameId: `${props.match.params.gameId}` }} style={{ textDecoration: 'none', color: 'black' }}>
+          <div className="card m-3" style={{ minWidth: '18rem', maxWidth: '18rem' }}>
+            <i className="fas fa-plus fa-9x"></i><br/><h3>New version</h3>
+          </div>
+        </Link>
         {versionCards}
       </div>
     </div>

@@ -12,4 +12,6 @@ const getAllVersions = () => new Promise((resolve, reject) => {
 
 const getVersionById = (versionId) => axios.get(`${baseUrl}/versions/${versionId}.json`);
 
-export default { getAllVersions, getVersionById };
+const addVersion = (versionObj) => axios.post(`${baseUrl}/versions.json`, versionObj);
+
+export default { getAllVersions, getVersionById, addVersion };

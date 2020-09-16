@@ -34,7 +34,7 @@ const NewGame = (props) => {
     gameData.addGame(tempObj)
       .then(() => props.history.push('/home'))
       .catch((err) => console.error('failed to create', err));
-  }
+  };
 
   return (
     <div>
