@@ -22,7 +22,7 @@ const VersionDetail = (props) => {
   const playtestCards = playtests.map((playtest) => <PlaytestCard key={playtest.id} versionID={props.match.params.versionId} version={version} playtest={playtest} />);
 
   return (
-<div className="container">
+    <div className="container">
     <div className="col-12 d-flex flex-row flex-wrap h-100">
       <div className="col-xl-4">
         <div>

@@ -10,4 +10,6 @@ const getAllPlaytests = () => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default { getAllPlaytests };
+const getPlaytestById = (playtestId) => axios.get(`${baseUrl}/playtests/${playtestId}.json`);
+
+export default { getAllPlaytests, getPlaytestById };

@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const PlaytestCard = (props) => {
-  const { playtest, version } = props;
+  const { playtest } = props;
   return (
   <div>
+    <Link to={`/playtest/${playtest.id}`}>
       <div className="card m-3" style={{ minWidth: '18rem', maxWidth: '18rem' }}>
       <div className="card-body">
       <Link to={`/playtest/${playtest.id}`} >
@@ -16,6 +17,7 @@ const PlaytestCard = (props) => {
       </Link>
       </div>
       </div>
+      </Link>
   </div>
   );
 };
