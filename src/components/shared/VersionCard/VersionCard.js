@@ -1,15 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const GameCard = (props) => {
+const VersionCard = (props) => {
   const { version } = props;
-  console.warn(props);
   return (
   <div>
-      <div className="card m-3" style={{ minWidth: '18rem', maxWidth: '18rem'  }}>
+      <div className="card m-3" style={{ minWidth: '18rem', maxWidth: '18rem' }}>
       <Link to={ props.ed
         ? '#'
-        : `/version/${version.id}`}
+        : { pathname: `/version/${version.id}` }}
       style={{ textDecoration: 'none', color: 'black' }}>
         <img src={version.imgUrl} className="card-img-top" alt={version.version} />
         <div className="card-body">
@@ -30,4 +29,4 @@ const GameCard = (props) => {
   );
 };
 
-export default GameCard;
+export default VersionCard;

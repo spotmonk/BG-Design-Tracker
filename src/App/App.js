@@ -57,6 +57,7 @@ const App = () => {
                   <PrivateRoute path="/home" component={Home} authed={authed} />
                   <PrivateRoute path="/newGame" component={NewGame} authed={authed} />
                   <PrivateRoute path="/game/:gameId" component={GameDetail} authed={authed} />
+                  <PrivateRoute path="/playtest/:playtestId" component={Home} authed={authed} />
                   <PrivateRoute path="/newversion/" component={NewVersion} authed={authed} />
                   <PrivateRoute path="/version/:versionId" component={VersionDetail} authed={authed} />
                   <PublicRoute path="/auth" component={Auth} authed={authed} />

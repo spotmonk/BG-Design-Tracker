@@ -1,5 +1,7 @@
 import gamesVersionsData from './gamesVerionsData';
 import versionData from './versionData';
+import versionsPlaytestsData from './versionsPlaytestsData';
+import playtestData from './playtestData';
 
 const getVersionsFromGameId = (gameId) => new Promise((resolve, reject) => {
   gamesVersionsData.getGameVersionsbyGameId(gameId)
@@ -8,11 +10,8 @@ const getVersionsFromGameId = (gameId) => new Promise((resolve, reject) => {
         .then((versions) => {
           const versionsToDisplay = [];
           gamesVersions.forEach((gv) => {
-            console.warn('on version', gv);
             versions.forEach((v) => {
-              console.warn('v id is ', v.id);
               if (v.id === gv.versionId) {
-                console.warn('should be pushing', v);
                 versionsToDisplay.push(v);
               }
             });
@@ -24,4 +23,23 @@ const getVersionsFromGameId = (gameId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default { getVersionsFromGameId };
+const getPlaytestsFromVersionID = (versionID) => new Promise((resolve, reject) => {
+  versionsPlaytestsData.getVersionPlaytestByVersionId(versionID)
+    .then((versionsPlaytests) => {
+      playtestData.getAllPlaytests()
+        .then((playtests) => {
+          const playtestsToDisplay = [];
+          versionsPlaytests.forEach((vp) => {
+            playtests.forEach((p) => {
+              if (p.id === vp.playtestId) {
+                playtestsToDisplay.push(p);
+              }
+            });
+            resolve(playtestsToDisplay)
+          });
+        });
+    })
+    .catch((err) => reject(err));
+});
+
+export default { getVersionsFromGameId, getPlaytestsFromVersionID };
