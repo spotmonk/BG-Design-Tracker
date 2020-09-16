@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import GameCard from '../../shared/GameCard/GameCard';
 import gameData from '../../../helpers/data/gameData';
 import smash from '../../../helpers/data/smash';
@@ -24,13 +25,17 @@ const GameDetail = (props) => {
   return (
     <div className="container">
     <div className="col-12 d-flex flex-row flex-wrap h-100">
-      <div className="col-4">
+      <div className="col-xl-4">
         <div>
           <GameCard ed={true} game={game} />
         </div>
       </div>
-      <div className=" col-8 card-group">
-      <button className="edbtn btn btn-success"><i className="fas fa-plus fa-9x"></i><br/><h3>New Version</h3></button>
+      <div className=" col-xl-8 card-deck">
+        <Link to={{ pathname: '/newversion/', gameId: `${props.match.params.gameId}` }} style={{ textDecoration: 'none', color: 'black' }}>
+          <div className="card m-3" style={{ minWidth: '18rem', maxWidth: '18rem' }}>
+            <i className="fas fa-plus fa-9x"></i><br/><h3>New version</h3>
+          </div>
+        </Link>
         {versionCards}
       </div>
     </div>

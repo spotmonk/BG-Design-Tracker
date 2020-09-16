@@ -16,4 +16,6 @@ const getGameVersionsbyGameId = (gameId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default { getAllGamesVersions, getGameVersionsbyGameId };
+const addGameVersion = (gvObj) => axios.post(`${baseUrl}/gamesVersions.json`, gvObj);
+
+export default { getAllGamesVersions, getGameVersionsbyGameId, addGameVersion };
