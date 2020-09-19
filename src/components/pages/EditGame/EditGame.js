@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import gameData from '../../../helpers/data/gameData';
 import authData from '../../../helpers/data/authData';
 
-const NewGame = (props) => {
+const EditGame = (props) => {
   const [game, setGame] = useState({});
   const [name, setName] = useState('');
   const [imgUrl, setImageUrl] = useState('');
@@ -11,7 +11,13 @@ const NewGame = (props) => {
 
   useEffect(() => {
     gameData.getGameById(props.match.params.gameId)
-      .then((resp) => setGame(resp.data))
+      .then((resp) => {
+        setGame(resp.data);
+        setName(resp.data.name);
+        setImageUrl(resp.data.imgUrl);
+        setDescription(resp.data.description);
+        setDate(resp.data.creationDate);
+      })
       .catch((err) => console.error('could not get game', err));
   }, [props.match.params]);
 
@@ -53,19 +59,19 @@ const NewGame = (props) => {
         <form>
           <div class="form-group">
             <label htmlFor="gameName">Game Name</label>
-            <input type="text" class="form-control" id="gameName" value={game.name} onChange={changeGameNameEvent} />
+            <input type="text" class="form-control" id="gameName" value={name} onChange={changeGameNameEvent} />
           </div>
           <div class="form-group">
             <label htmlFor="gameName">Game Image URL</label>
-            <input type="url" class="form-control" id="imgURL" defaultValue={game.imgUrl} onChange={changeImgUrlEvent}/>
+            <input type="url" class="form-control" id="imgURL" value={imgUrl} onChange={changeImgUrlEvent}/>
           </div>
           <div class="form-group">
             <label htmlFor="gameDescription">Game Description</label>
-            <input type="text" class="form-control" id="gameName" defaultValue={game.description} onChange={changeGameDescirptionEvent}/>
+            <input type="text" class="form-control" id="gameName" value={description} onChange={changeGameDescirptionEvent}/>
           </div>
           <div class="form-group">
             <label htmlFor="gameDescription">Game Description</label>
-            <input type="date" class="form-control" id="gameDate" defaultValue={game.dateTime} onChange={changeGameDateEvent}/>
+            <input type="date" class="form-control" id="gameDate" value={date} onChange={changeGameDateEvent}/>
           </div>
 
           <button class="btn btn-success" onClick={saveGame}>Save Game</button>
@@ -74,4 +80,4 @@ const NewGame = (props) => {
   );
 };
 
-export default NewGame;
+export default EditGame;
