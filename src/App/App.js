@@ -14,6 +14,12 @@ import fbConnection from '../helpers/data/connection';
 import MyNavBar from '../components/pages/MyNavBar/MyNavBar';
 import Auth from '../components/pages/Auth/Auth';
 import Home from '../components/pages/Home/Home';
+import GameDetail from '../components/pages/GameDetail/GameDetail';
+import VersionDetail from '../components/pages/VersionDetail/VersionDetail';
+import NewGame from '../components/pages/NewGame/NewGame';
+import NewVersion from '../components/pages/NewVersion/NewVersion';
+import PlaytestDetail from '../components/pages/PlaytestDetail/PlaytestDetail';
+import NewPlaytest from '../components/pages/NewPlaytest/NewPlaytest';
 
 fbConnection();
 
@@ -51,7 +57,12 @@ const App = () => {
               <div className="container">
                 <Switch>
                   <PrivateRoute path="/home" component={Home} authed={authed} />
-                  {/* <PrivateRoute path="/newGame" component={NewItem} authed={authed} /> */}
+                  <PrivateRoute path="/newGame" component={NewGame} authed={authed} />
+                  <PrivateRoute path="/game/:gameId" component={GameDetail} authed={authed} />
+                  <PrivateRoute path="/playtest/:playtestId" component={PlaytestDetail} authed={authed} />
+                  <PrivateRoute path="/newversion/" component={NewVersion} authed={authed} />
+                  <PrivateRoute path="/newplaytest/" component={NewPlaytest} authed={authed} />
+                  <PrivateRoute path="/version/:versionId" component={VersionDetail} authed={authed} />
                   <PublicRoute path="/auth" component={Auth} authed={authed} />
                   <Redirect from="*" to="/home" />
                 </Switch>
