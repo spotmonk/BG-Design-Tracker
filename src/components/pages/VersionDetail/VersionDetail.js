@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import smash from '../../../helpers/data/smash';
+import versionData from '../../../helpers/data/versionData';
 
 import VersionCard from '../../shared/VersionCard/VersionCard';
 import PlaytestCard from '../../shared/PlaytestCard/PlaytestCard';
-import versionData from '../../../helpers/data/versionData';
 
 const VersionDetail = (props) => {
   const [version, setVersion] = useState({});
@@ -30,7 +32,9 @@ const VersionDetail = (props) => {
         </div>
       </div>
       <div className=" col-xl-8 card-deck">
+      <Link to={{ pathname: '/newplaytest/', versionId: `${props.match.params.versionId}` }} style={{ textDecoration: 'none', color: 'black' }}>
       <div className="card m-3" style={{ minWidth: '18rem', maxWidth: '18rem' }}><i className="fas fa-plus fa-9x"></i><br/><h3>New Playtest</h3></div>
+      </Link>
         {playtestCards}
       </div>
     </div>

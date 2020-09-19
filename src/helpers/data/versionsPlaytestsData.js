@@ -10,4 +10,6 @@ const getVersionPlaytestByVersionId = (versionId) => new Promise((resolve, rejec
     .catch((err) => reject(err));
 });
 
-export default { getVersionPlaytestByVersionId };
+const addVersionPlaytest = (VPObject) => axios.post(`${baseUrl}/versionsPlaytests.json`, VPObject);
+
+export default { getVersionPlaytestByVersionId, addVersionPlaytest };
