@@ -66,7 +66,7 @@ const NewVersion = (props) => {
             <label htmlFor="versionChanges">Game Changes</label>
             <textarea class="form-control" id="versionChanges" rows="3" onChange={changeVersionChangesEvent}></textarea>
           </div>
-          <button class="btn btn-success" onClick={saveVersion}>Save Game</button>
+          <button class="btn btn-success" onClick={saveVersion}>Save Version</button>
         </form>
   </div>
   );

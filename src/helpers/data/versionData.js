@@ -14,4 +14,11 @@ const getVersionById = (versionId) => axios.get(`${baseUrl}/versions/${versionId
 
 const addVersion = (versionObj) => axios.post(`${baseUrl}/versions.json`, versionObj);
 
-export default { getAllVersions, getVersionById, addVersion };
+const updateVersion = (versionId, versionObj) => axios.put(`${baseUrl}/versions/${versionId}.json`, versionObj);
+
+export default {
+  getAllVersions,
+  getVersionById,
+  addVersion,
+  updateVersion,
+};
