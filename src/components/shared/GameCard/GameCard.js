@@ -19,7 +19,10 @@ const GameCard = (props) => {
         </div>
         </Link>
         { props.ed
-          ? <div><button onClick={() => console.warn('button pressed')} className="edbtn btn btn-warning">Edit Game</button>
+          ? <div>
+            <Link to={`/editgame/${props.gameId.gameId}`}>
+              <button className="edbtn btn btn-warning">Edit Game</button>
+            </Link>
             <button className="edbtn btn btn-danger">Delete Game</button></div>
           : ''}
       </div>
