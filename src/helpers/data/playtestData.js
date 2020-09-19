@@ -14,4 +14,11 @@ const getPlaytestById = (playtestId) => axios.get(`${baseUrl}/playtests/${playte
 
 const newPlaytest = (playtestObject) => axios.post(`${baseUrl}/playtests.json`, playtestObject);
 
-export default { getAllPlaytests, getPlaytestById, newPlaytest };
+const updatePlaytest = (playtestId, playtestObject) => axios.put(`${baseUrl}/playtests/${playtestId}.json`, playtestObject);
+
+export default {
+  getAllPlaytests,
+  getPlaytestById,
+  newPlaytest,
+  updatePlaytest,
+};

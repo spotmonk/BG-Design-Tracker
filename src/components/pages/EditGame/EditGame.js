@@ -3,7 +3,7 @@ import gameData from '../../../helpers/data/gameData';
 import authData from '../../../helpers/data/authData';
 
 const EditGame = (props) => {
-  const [game, setGame] = useState({});
+  //const [game, setGame] = useState({});
   const [name, setName] = useState('');
   const [imgUrl, setImageUrl] = useState('');
   const [description, setDescription] = useState('');
@@ -12,7 +12,7 @@ const EditGame = (props) => {
   useEffect(() => {
     gameData.getGameById(props.match.params.gameId)
       .then((resp) => {
-        setGame(resp.data);
+    //    setGame(resp.data);
         setName(resp.data.name);
         setImageUrl(resp.data.imgUrl);
         setDescription(resp.data.description);

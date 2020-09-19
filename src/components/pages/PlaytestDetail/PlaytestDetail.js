@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import playtestData from '../../../helpers/data/playtestData';
 import './PlaytestDetail.scss';
 
@@ -15,7 +16,7 @@ const PlaytestDetail = (props) => {
   return (
     <div className="container">
       <div className="d-flex justify-content-around m-3">
-      <button className="btn btn-warning">Edit Playtest</button>
+      <Link to={`/editplaytest/${props.match.params.playtestId}`} ><button className="btn btn-warning">Edit Playtest</button></Link>
       <h3>Overall Feel {playtest.playtestFeel}</h3>
       <button className="btn btn-danger">Delete Playtest</button>
       </div>
