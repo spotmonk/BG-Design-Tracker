@@ -21,8 +21,10 @@ const VersionCard = (props) => {
         </div>
         </Link>
         { props.ed
-          ? <div><button onClick={() => console.warn('button pressed')} className="edbtn btn btn-warning">Edit Game</button>
-            <button className="edbtn btn btn-danger">Delete Game</button></div>
+          ? <div><Link to={`/editversion/${props.versionId}`}>
+            <button className="edbtn btn btn-warning">Edit Version</button>
+            </Link>
+            <button className="edbtn btn btn-danger">Delete Version</button></div>
           : ''}
       </div>
   </div>
