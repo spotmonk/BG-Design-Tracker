@@ -19,6 +19,7 @@ import VersionDetail from '../components/pages/VersionDetail/VersionDetail';
 import NewGame from '../components/pages/NewGame/NewGame';
 import NewVersion from '../components/pages/NewVersion/NewVersion';
 import PlaytestDetail from '../components/pages/PlaytestDetail/PlaytestDetail';
+import NewPlaytest from '../components/pages/NewPlaytest/NewPlaytest';
 
 fbConnection();
 
@@ -60,6 +61,7 @@ const App = () => {
                   <PrivateRoute path="/game/:gameId" component={GameDetail} authed={authed} />
                   <PrivateRoute path="/playtest/:playtestId" component={PlaytestDetail} authed={authed} />
                   <PrivateRoute path="/newversion/" component={NewVersion} authed={authed} />
+                  <PrivateRoute path="/newplaytest/" component={NewPlaytest} authed={authed} />
                   <PrivateRoute path="/version/:versionId" component={VersionDetail} authed={authed} />
                   <PublicRoute path="/auth" component={Auth} authed={authed} />
                   <Redirect from="*" to="/home" />
