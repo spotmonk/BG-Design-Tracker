@@ -20,6 +20,7 @@ import NewGame from '../components/pages/NewGame/NewGame';
 import NewVersion from '../components/pages/NewVersion/NewVersion';
 import PlaytestDetail from '../components/pages/PlaytestDetail/PlaytestDetail';
 import NewPlaytest from '../components/pages/NewPlaytest/NewPlaytest';
+import EditGame from '../components/pages/EditGame/EditGame';
 
 fbConnection();
 
@@ -59,6 +60,7 @@ const App = () => {
                   <PrivateRoute path="/home" component={Home} authed={authed} />
                   <PrivateRoute path="/newGame" component={NewGame} authed={authed} />
                   <PrivateRoute path="/game/:gameId" component={GameDetail} authed={authed} />
+                  <PrivateRoute path="/editgame/:gameId" component={EditGame} authed={authed} />
                   <PrivateRoute path="/playtest/:playtestId" component={PlaytestDetail} authed={authed} />
                   <PrivateRoute path="/newversion/" component={NewVersion} authed={authed} />
                   <PrivateRoute path="/newplaytest/" component={NewPlaytest} authed={authed} />
