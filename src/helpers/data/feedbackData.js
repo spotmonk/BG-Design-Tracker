@@ -25,10 +25,20 @@ const getFeedbackById = (feedbackId) => axios.get(`${baseUrl}/feedback/${feedbac
 
 const updateFeedback = (feedbackId, feedbackObj) => axios.put(`${baseUrl}/feedback/${feedbackId}.json`, feedbackObj);
 
+const getFeedbackIdfromNumber = (number) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/feedback.json?orderBy="number"&equalTo=${number}`)
+    .then(({ data }) => {
+      const feedback = utils.responseToArray(data);
+      resolve(feedback[0].id);
+    })
+    .catch((err) => reject(err));
+});
+
 export default {
   getAllFeedbaack,
   getHighestPlaytestNumber,
   newFeedback,
   getFeedbackById,
   updateFeedback,
+  getFeedbackIdfromNumber,
 };
