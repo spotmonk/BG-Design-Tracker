@@ -28,7 +28,7 @@ const PlaytestDetail = (props) => {
               feedbackId: response.data.name,
             };
             playtestsFeedbackData.addPlaytestFeedback(pfObj)
-              .then(() => props.history.push(`/playtest/${props.match.params.playtestId}`))
+              .then(() => props.history.push(`/playtest/${props.match.params.playtestId}`));
           });
       })
       .catch((err) => console.error('can not create new feedback', err));
