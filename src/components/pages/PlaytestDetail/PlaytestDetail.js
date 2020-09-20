@@ -1,10 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import feedbackData from '../../../helpers/data/feedbackData';
 import playtestData from '../../../helpers/data/playtestData';
+import playtestsFeedbackData from '../../../helpers/data/playtestsFeedbackData';
 import './PlaytestDetail.scss';
 
 const PlaytestDetail = (props) => {
   const [playtest, setPlaytest] = useState({});
+
+  const newfeedback = () => {
+    console.warn('function called');
+    feedbackData.getHighestPlaytestNumber()
+      .then((resp) => {
+        const tempobj = {
+          number: resp + 1,
+          playerName: '',
+          enjoyment: 5,
+          playAgain: true,
+          goodFeedback: '',
+          badFeedback: '',
+          favoriteFeature: '',
+        };
+        feedbackData.newFeedback(tempobj)
+          .then((response) => {
+            const pfObj = {
+              playtestId: props.match.params.playtestId,
+              feedbackId: response.data.name,
+            };
+            playtestsFeedbackData.addPlaytestFeedback(pfObj)
+              .then(() => props.history.push(`/playtest/${props.match.params.playtestId}`));
+          });
+      })
+      .catch((err) => console.error('can not create new feedback', err));
+  };
 
   useEffect(() => {
     const { playtestId } = props.match.params;
@@ -14,6 +42,7 @@ const PlaytestDetail = (props) => {
   }, [props.match.params]);
 
   return (
+    <>
     <div className="container">
       <div className="d-flex justify-content-around m-3">
       <Link to={`/editplaytest/${props.match.params.playtestId}`} ><button className="btn btn-warning">Edit Playtest</button></Link>
@@ -50,11 +79,16 @@ const PlaytestDetail = (props) => {
           <h6>Changes to Make:</h6>
           <div className="notes">{playtest.changesToMake}</div>
         </div>
-
       </div>
 
     </div>
     </div>
+    <button href="#" onClick={newfeedback} style={{ textDecoration: 'none', color: 'black' }}>
+          <div className="card m-3" style={{ minWidth: '18rem', maxWidth: '18rem' }}>
+            <i className="fas fa-plus fa-9x"></i><br/><h3>New Feedback</h3>
+          </div>
+        </button>
+  </>
   );
 };
 

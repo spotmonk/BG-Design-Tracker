@@ -23,6 +23,8 @@ import NewPlaytest from '../components/pages/NewPlaytest/NewPlaytest';
 import EditGame from '../components/pages/EditGame/EditGame';
 import EditVersion from '../components/pages/EditVersion/EditVersion';
 import EditPlaytest from '../components/pages/EditPlaytest/EditPlaytest';
+import NewFeedback from '../components/pages/NewFeedback/NewFeedback';
+import AuthedFeedback from '../components/pages/AuthedFeedback/AuthedFeedback';
 
 fbConnection();
 
@@ -69,7 +71,9 @@ const App = () => {
                   <PrivateRoute path="/newplaytest/" component={NewPlaytest} authed={authed} />
                   <PrivateRoute path="/editversion/:versionId" component={EditVersion} authed={authed} />
                   <PrivateRoute path="/version/:versionId" component={VersionDetail} authed={authed} />
+                  <PrivateRoute path="/newfeedback" component={AuthedFeedback} authed={authed} />
                   <PublicRoute path="/auth" component={Auth} authed={authed} />
+                  <PublicRoute path="/feedback" component={NewFeedback} authed={authed} />
                   <Redirect from="*" to="/home" />
                 </Switch>
               </div>
