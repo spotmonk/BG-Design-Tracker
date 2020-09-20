@@ -35,7 +35,7 @@ const getPlaytestsFromVersionID = (versionID) => new Promise((resolve, reject) =
                 playtestsToDisplay.push(p);
               }
             });
-            resolve(playtestsToDisplay)
+            resolve(playtestsToDisplay);
           });
         });
     })
