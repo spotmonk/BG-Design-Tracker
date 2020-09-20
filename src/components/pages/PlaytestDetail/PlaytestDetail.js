@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom';
 import feedbackData from '../../../helpers/data/feedbackData';
 import playtestData from '../../../helpers/data/playtestData';
 import playtestsFeedbackData from '../../../helpers/data/playtestsFeedbackData';
+import smash from '../../../helpers/data/smash';
+
+import FeedbackCard from '../../shared/FeedbackCard/FeedbackCard';
 import './PlaytestDetail.scss';
 
 const PlaytestDetail = (props) => {
   const [playtest, setPlaytest] = useState({});
+  const [feedback, setFeedback] = useState([]);
 
   const newfeedback = () => {
     console.warn('function called');
@@ -15,7 +19,7 @@ const PlaytestDetail = (props) => {
         const tempobj = {
           number: resp + 1,
           playerName: '',
-          enjoyment: 5,
+          enjoyment: 0,
           playAgain: true,
           goodFeedback: '',
           badFeedback: '',
@@ -28,7 +32,10 @@ const PlaytestDetail = (props) => {
               feedbackId: response.data.name,
             };
             playtestsFeedbackData.addPlaytestFeedback(pfObj)
-              .then(() => props.history.push(`/playtest/${props.match.params.playtestId}`));
+              .then(() => {
+                props.history.push('/temp');
+                props.history.goBack();
+              });
           });
       })
       .catch((err) => console.error('can not create new feedback', err));
@@ -39,7 +46,12 @@ const PlaytestDetail = (props) => {
     playtestData.getPlaytestById(playtestId)
       .then((resp) => setPlaytest(resp.data))
       .catch((err) => console.error(err));
+    smash.getFeedbackfromPlaytestId(playtestId)
+      .then((response) => setFeedback(response))
+      .catch((err) => console.error('can not get feedback', err));
   }, [props.match.params]);
+
+  const feedbackCards = feedback.map((fb) => <FeedbackCard feedback={fb} />);
 
   return (
     <>
@@ -84,10 +96,11 @@ const PlaytestDetail = (props) => {
     </div>
     </div>
     <button href="#" onClick={newfeedback} style={{ textDecoration: 'none', color: 'black' }}>
-          <div className="card m-3" style={{ minWidth: '18rem', maxWidth: '18rem' }}>
-            <i className="fas fa-plus fa-9x"></i><br/><h3>New Feedback</h3>
-          </div>
-        </button>
+      <div className="card m-3" style={{ minWidth: '18rem', maxWidth: '18rem' }}>
+      <i className="fas fa-plus fa-9x"></i><br/><h3>New Feedback</h3>
+      </div>
+    </button>
+    {feedbackCards}
   </>
   );
 };
