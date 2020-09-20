@@ -21,4 +21,11 @@ const getHighestPlaytestNumber = () => new Promise((resolve, reject) => {
 
 const newFeedback = (feedbackObj) => axios.post(`${baseUrl}/feedback.json`, feedbackObj);
 
-export default { getAllFeedbaack, getHighestPlaytestNumber, newFeedback };
+const getFeedbackById = (feedbackId) => axios.get(`${baseUrl}/feedback/${feedbackId}.json`);
+
+export default {
+  getAllFeedbaack,
+  getHighestPlaytestNumber,
+  newFeedback,
+  getFeedbackById,
+};

@@ -2,6 +2,8 @@ import gamesVersionsData from './gamesVerionsData';
 import versionData from './versionData';
 import versionsPlaytestsData from './versionsPlaytestsData';
 import playtestData from './playtestData';
+import playtestsFeedbackData from './playtestsFeedbackData';
+import feedbackData from './feedbackData';
 
 const getVersionsFromGameId = (gameId) => new Promise((resolve, reject) => {
   gamesVersionsData.getGameVersionsbyGameId(gameId)
@@ -42,4 +44,23 @@ const getPlaytestsFromVersionID = (versionID) => new Promise((resolve, reject) =
     .catch((err) => reject(err));
 });
 
-export default { getVersionsFromGameId, getPlaytestsFromVersionID };
+const getFeedbackfromPlaytestId = (playtestId) => new Promise((resolve, reject) => {
+  playtestsFeedbackData.getPlaytestsFeedbackbyPlaytestId(playtestId)
+    .then((playtestFeedback) => {
+      feedbackData.getAllFeedbaack()
+        .then((feedback) => {
+          const feedbackToDisplay = [];
+          playtestFeedback.forEach((pf) => {
+            feedback.forEach((f) => {
+              if (f.id === pf.feedbackId) {
+                feedbackToDisplay.push(f);
+              }
+            });
+          });
+          resolve(feedbackToDisplay);
+        });
+    })
+    .catch((err) => reject(err));
+});
+
+export default { getVersionsFromGameId, getPlaytestsFromVersionID, getFeedbackfromPlaytestId };
