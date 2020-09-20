@@ -23,9 +23,12 @@ const newFeedback = (feedbackObj) => axios.post(`${baseUrl}/feedback.json`, feed
 
 const getFeedbackById = (feedbackId) => axios.get(`${baseUrl}/feedback/${feedbackId}.json`);
 
+const updateFeedback = (feedbackId, feedbackObj) => axios.put(`${baseUrl}/feedback/${feedbackId}.json`, feedbackObj);
+
 export default {
   getAllFeedbaack,
   getHighestPlaytestNumber,
   newFeedback,
   getFeedbackById,
+  updateFeedback,
 };
