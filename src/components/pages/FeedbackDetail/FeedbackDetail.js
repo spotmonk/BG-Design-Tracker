@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import feedbackData from '../../../helpers/data/feedbackData';
 
 const FeedbackDetail = (props) => {
@@ -16,7 +17,7 @@ const FeedbackDetail = (props) => {
     <div className="d-flex justify-content-around m-3">
       <h2>Name: {feedback.playerName}</h2>
       <h3>Overall Feel: {feedback.enjoyment}</h3>
-      <h2>Play Again?: {feedback.playAgain ? 'Yes' : 'No'}</h2>
+      <h2>Play Again?: {feedback.playAgain === 'true' ? 'Yes' : 'No'}</h2>
     </div>
     <div className="d-flex m-3">
         <div className="col-4">
@@ -33,7 +34,7 @@ const FeedbackDetail = (props) => {
         </div>
       </div>
       <div className="d-flex justify-content-around m-3">
-      <button className="btn btn-warning">Edit Feedback</button>
+      <Link to={`/editfeedback/${props.match.params.feedbackId}`}><button className="btn btn-warning">Edit Feedback</button></Link>
       <button className="btn btn-danger">Delete Feedback</button>
       </div>
 
