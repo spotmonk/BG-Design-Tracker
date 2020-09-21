@@ -13,7 +13,7 @@ const getAllFeedbaack = () => new Promise((resolve, reject) => {
 const getHighestPlaytestNumber = () => new Promise((resolve, reject) => {
   getAllFeedbaack()
     .then((resp) => {
-      const highest = Math.max.apply(Math, resp.map((fb) => fb.number));
+      const highest = Math.max(...resp.map((fb) => fb.number));
       resolve(highest);
     })
     .catch((err) => reject(err));
@@ -28,8 +28,7 @@ const updateFeedback = (feedbackId, feedbackObj) => axios.put(`${baseUrl}/feedba
 const getFeedbackIdfromNumber = (number) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/feedback.json?orderBy="number"&equalTo=${number}`)
     .then(({ data }) => {
-      const feedback = utils.responseToArray(data);
-      resolve(feedback[0].id);
+      resolve(utils.responseToArray(data));
     })
     .catch((err) => reject(err));
 });

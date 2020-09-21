@@ -7,7 +7,11 @@ const GetNumber = (props) => {
   const submitNumber = (e) => {
     e.preventDefault();
     feedbackData.getFeedbackIdfromNumber(reference)
-      .then((feedbackId) => props.history.push(`/feedback/${feedbackId}`))
+      .then((feedback) => {
+        feedback[0].enjoyment === 0
+          ? props.history.push(`/newfeedback/${feedback.id}`)
+          : props.history.push('/alreadysubmitted');
+      })
       .catch((err) => console.warn('can not get feedback', err));
   };
   return (
