@@ -63,4 +63,44 @@ const getFeedbackfromPlaytestId = (playtestId) => new Promise((resolve, reject) 
     .catch((err) => reject(err));
 });
 
-export default { getVersionsFromGameId, getPlaytestsFromVersionID, getFeedbackfromPlaytestId };
+const deleteFeedback = (feedbackId) => new Promise((resolve, reject) => {
+  feedbackData.removeFeedback(feedbackId)
+    .then(() => {
+      playtestsFeedbackData.getPlaytestsFeedbackbyFeedbackId(feedbackId)
+        .then((resp) => {
+          resp.forEach((pf) => {
+            playtestsFeedbackData.removePlaytestFeedback(pf.id);
+          });
+        });
+      resolve();
+    })
+    .catch((err) => reject(err));
+});
+
+const deletePlaytest = (playtestId) => new Promise((resolve, reject) => {
+  playtestData.removePlaytest(playtestId)
+    .then(() => {
+      versionsPlaytestsData.getVersionPlaytestByPlaytestId(playtestId)
+        .then((resp) => {
+          resp.forEach((vp) => {
+            versionsPlaytestsData.removeVersionPlaytest(vp.id);
+          });
+          playtestsFeedbackData.getPlaytestsFeedbackbyPlaytestId(playtestId)
+            .then((response) => {
+              response.forEach((fb) => {
+                deleteFeedback(fb.feedbackId);
+              });
+            });
+        });
+      resolve();
+    })
+    .catch((err) => reject(err));
+});
+
+export default {
+  getVersionsFromGameId,
+  getPlaytestsFromVersionID,
+  getFeedbackfromPlaytestId,
+  deleteFeedback,
+  deletePlaytest,
+};

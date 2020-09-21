@@ -16,9 +16,12 @@ const newPlaytest = (playtestObject) => axios.post(`${baseUrl}/playtests.json`, 
 
 const updatePlaytest = (playtestId, playtestObject) => axios.put(`${baseUrl}/playtests/${playtestId}.json`, playtestObject);
 
+const removePlaytest = (playtestId) => axios.delete(`${baseUrl}/playtests/${playtestId}.json`);
+
 export default {
   getAllPlaytests,
   getPlaytestById,
   newPlaytest,
   updatePlaytest,
+  removePlaytest,
 };

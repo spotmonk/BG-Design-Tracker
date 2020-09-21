@@ -33,6 +33,8 @@ const getFeedbackIdfromNumber = (number) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+const removeFeedback = (feedbackId) => axios.delete(`${baseUrl}/feedback/${feedbackId}.json`);
+
 export default {
   getAllFeedbaack,
   getHighestPlaytestNumber,
@@ -40,4 +42,5 @@ export default {
   getFeedbackById,
   updateFeedback,
   getFeedbackIdfromNumber,
+  removeFeedback,
 };

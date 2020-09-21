@@ -10,6 +10,19 @@ const getVersionPlaytestByVersionId = (versionId) => new Promise((resolve, rejec
     .catch((err) => reject(err));
 });
 
+const getVersionPlaytestByPlaytestId = (PlaytestId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/versionsPlaytests.json?orderBy="playtestId"&equalTo="${PlaytestId}"`)
+    .then(({ data }) => resolve(utils.responseToArray(data)))
+    .catch((err) => reject(err));
+});
+
 const addVersionPlaytest = (VPObject) => axios.post(`${baseUrl}/versionsPlaytests.json`, VPObject);
 
-export default { getVersionPlaytestByVersionId, addVersionPlaytest };
+const removeVersionPlaytest = (vpId) => axios.delete(`${baseUrl}/versionsPlaytests/${vpId}.json`);
+
+export default {
+  getVersionPlaytestByVersionId,
+  addVersionPlaytest,
+  getVersionPlaytestByPlaytestId,
+  removeVersionPlaytest,
+};
