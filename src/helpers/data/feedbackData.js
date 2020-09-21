@@ -13,7 +13,7 @@ const getAllFeedbaack = () => new Promise((resolve, reject) => {
 const getHighestPlaytestNumber = () => new Promise((resolve, reject) => {
   getAllFeedbaack()
     .then((resp) => {
-      const highest = Math.max.apply(Math, resp.map((fb) => fb.number));
+      const highest = Math.max(...resp.map((fb) => fb.number));
       resolve(highest);
     })
     .catch((err) => reject(err));
@@ -25,10 +25,19 @@ const getFeedbackById = (feedbackId) => axios.get(`${baseUrl}/feedback/${feedbac
 
 const updateFeedback = (feedbackId, feedbackObj) => axios.put(`${baseUrl}/feedback/${feedbackId}.json`, feedbackObj);
 
+const getFeedbackIdfromNumber = (number) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/feedback.json?orderBy="number"&equalTo=${number}`)
+    .then(({ data }) => {
+      resolve(utils.responseToArray(data));
+    })
+    .catch((err) => reject(err));
+});
+
 export default {
   getAllFeedbaack,
   getHighestPlaytestNumber,
   newFeedback,
   getFeedbackById,
   updateFeedback,
+  getFeedbackIdfromNumber,
 };
