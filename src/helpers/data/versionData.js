@@ -16,9 +16,12 @@ const addVersion = (versionObj) => axios.post(`${baseUrl}/versions.json`, versio
 
 const updateVersion = (versionId, versionObj) => axios.put(`${baseUrl}/versions/${versionId}.json`, versionObj);
 
+const removeVersion = (versionId) => axios.delete(`${baseUrl}/versions/${versionId}.json`);
+
 export default {
   getAllVersions,
   getVersionById,
   addVersion,
   updateVersion,
+  removeVersion,
 };

@@ -97,10 +97,30 @@ const deletePlaytest = (playtestId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+const deleteVersion = (versionId) => new Promise((resolve, reject) => {
+  versionData.removeVersion(versionId)
+    .then(() => {
+      gamesVersionsData.getGameVersionsbyVersionId(versionId)
+        .then((resp) => {
+          resp.forEach((gv) => {
+            versionsPlaytestsData.removeVersionPlaytest(gv.id);
+          });
+          versionsPlaytestsData.getVersionPlaytestByVersionId(versionId)
+            .then((response) => {
+              response.forEach((vp) => {
+                deleteFeedback(vp.playtestId);
+              });
+            });
+        });
+      resolve();
+    })
+    .catch((err) => reject(err));
+});
 export default {
   getVersionsFromGameId,
   getPlaytestsFromVersionID,
   getFeedbackfromPlaytestId,
   deleteFeedback,
   deletePlaytest,
+  deleteVersion,
 };
