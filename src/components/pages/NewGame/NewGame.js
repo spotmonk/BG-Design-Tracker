@@ -39,19 +39,19 @@ const NewGame = (props) => {
   return (
     <div>
         <form>
-          <div class="form-group">
-            <label for="gameName">Game Name</label>
-            <input type="text" class="form-control" id="gameName" onChange={changeGameNameEvent} />
+          <div className="form-group">
+            <label htmlFor="gameName">Game Name</label>
+            <input type="text" className="form-control" id="gameName" onChange={changeGameNameEvent} />
           </div>
-          <div class="form-group">
-            <label for="gameName">Game Image URL</label>
-            <input type="url" class="form-control" id="imgURL" onChange={changeImgUrlEvent}/>
+          <div className="form-group">
+            <label htmlFor="gameName">Game Image URL</label>
+            <input type="url" className="form-control" id="imgURL" onChange={changeImgUrlEvent}/>
           </div>
-          <div class="form-group">
-            <label for="gameDescription">Game Description</label>
-            <input type="text" class="form-control" id="gameName" onChange={changeGameDescirptionEvent}/>
+          <div className="form-group">
+            <label htmlFor="gameDescription">Game Description</label>
+            <input type="text" className="form-control" id="gameName" onChange={changeGameDescirptionEvent}/>
           </div>
-          <button class="btn btn-success" onClick={saveGame}>Save Game</button>
+          <button className="btn btn-success" onClick={saveGame}>Save Game</button>
         </form>
   </div>
   );

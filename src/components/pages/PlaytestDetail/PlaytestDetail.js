@@ -13,7 +13,6 @@ const PlaytestDetail = (props) => {
   const [feedback, setFeedback] = useState([]);
 
   const newfeedback = () => {
-    console.warn('function called');
     feedbackData.getHighestPlaytestNumber()
       .then((resp) => {
         const tempobj = {

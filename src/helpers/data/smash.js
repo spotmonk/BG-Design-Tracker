@@ -4,6 +4,7 @@ import versionsPlaytestsData from './versionsPlaytestsData';
 import playtestData from './playtestData';
 import playtestsFeedbackData from './playtestsFeedbackData';
 import feedbackData from './feedbackData';
+import gameData from './gameData';
 
 const getVersionsFromGameId = (gameId) => new Promise((resolve, reject) => {
   gamesVersionsData.getGameVersionsbyGameId(gameId)
@@ -108,7 +109,7 @@ const deleteVersion = (versionId) => new Promise((resolve, reject) => {
           versionsPlaytestsData.getVersionPlaytestByVersionId(versionId)
             .then((response) => {
               response.forEach((vp) => {
-                deleteFeedback(vp.playtestId);
+                deletePlaytest(vp.playtestId);
               });
             });
         });
@@ -116,6 +117,22 @@ const deleteVersion = (versionId) => new Promise((resolve, reject) => {
     })
     .catch((err) => reject(err));
 });
+
+const deleteGame = (gameId) => new Promise((resolve, reject) => {
+  gameData.removeGame(gameId)
+    .then(() => {
+      gamesVersionsData.getGameVersionsbyGameId(gameId)
+        .then((resp) => {
+          resp.forEach((gv) => {
+            deleteVersion(gv.versionId);
+            gamesVersionsData.removeGameVersion(gv.id);
+          });
+        });
+      resolve();
+    })
+    .catch((err) => reject(err));
+});
+
 export default {
   getVersionsFromGameId,
   getPlaytestsFromVersionID,
@@ -123,4 +140,5 @@ export default {
   deleteFeedback,
   deletePlaytest,
   deleteVersion,
+  deleteGame,
 };

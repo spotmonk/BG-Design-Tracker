@@ -28,7 +28,7 @@ const VersionDetail = (props) => {
     <div className="col-12 d-flex flex-row flex-wrap h-100">
       <div className="col-xl-4">
         <div>
-          <VersionCard ed={true} versionId={props.match.params.versionId} version={version} />
+          <VersionCard ed={true} versionId={props.match.params.versionId} history={props.history} version={version} />
         </div>
       </div>
       <div className=" col-xl-8 card-deck">
