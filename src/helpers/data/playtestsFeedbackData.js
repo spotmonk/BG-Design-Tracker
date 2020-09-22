@@ -16,6 +16,20 @@ const getPlaytestsFeedbackbyPlaytestId = (playtestId) => new Promise((resolve, r
     .catch((err) => reject(err));
 });
 
+const getPlaytestsFeedbackbyFeedbackId = (feedbackId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/playtestsFeedback.json?orderBy="feedbackId"&equalTo="${feedbackId}"`)
+    .then(({ data }) => resolve(utils.responseToArray(data)))
+    .catch((err) => reject(err));
+});
+
 const addPlaytestFeedback = (pfObj) => axios.post(`${baseUrl}/playtestsFeedback.json`, pfObj);
 
-export default { getAllPlaytestFeedback, addPlaytestFeedback, getPlaytestsFeedbackbyPlaytestId };
+const removePlaytestFeedback = (PFId) => axios.delete(`${baseUrl}/playtestsFeedback/${PFId}.json`);
+
+export default {
+  getAllPlaytestFeedback,
+  addPlaytestFeedback,
+  getPlaytestsFeedbackbyPlaytestId,
+  removePlaytestFeedback,
+  getPlaytestsFeedbackbyFeedbackId,
+};

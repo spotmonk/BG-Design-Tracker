@@ -4,6 +4,7 @@ import versionsPlaytestsData from './versionsPlaytestsData';
 import playtestData from './playtestData';
 import playtestsFeedbackData from './playtestsFeedbackData';
 import feedbackData from './feedbackData';
+import gameData from './gameData';
 
 const getVersionsFromGameId = (gameId) => new Promise((resolve, reject) => {
   gamesVersionsData.getGameVersionsbyGameId(gameId)
@@ -63,4 +64,81 @@ const getFeedbackfromPlaytestId = (playtestId) => new Promise((resolve, reject) 
     .catch((err) => reject(err));
 });
 
-export default { getVersionsFromGameId, getPlaytestsFromVersionID, getFeedbackfromPlaytestId };
+const deleteFeedback = (feedbackId) => new Promise((resolve, reject) => {
+  feedbackData.removeFeedback(feedbackId)
+    .then(() => {
+      playtestsFeedbackData.getPlaytestsFeedbackbyFeedbackId(feedbackId)
+        .then((resp) => {
+          resp.forEach((pf) => {
+            playtestsFeedbackData.removePlaytestFeedback(pf.id);
+          });
+        });
+      resolve();
+    })
+    .catch((err) => reject(err));
+});
+
+const deletePlaytest = (playtestId) => new Promise((resolve, reject) => {
+  playtestData.removePlaytest(playtestId)
+    .then(() => {
+      versionsPlaytestsData.getVersionPlaytestByPlaytestId(playtestId)
+        .then((resp) => {
+          resp.forEach((vp) => {
+            versionsPlaytestsData.removeVersionPlaytest(vp.id);
+          });
+          playtestsFeedbackData.getPlaytestsFeedbackbyPlaytestId(playtestId)
+            .then((response) => {
+              response.forEach((fb) => {
+                deleteFeedback(fb.feedbackId);
+              });
+            });
+        });
+      resolve();
+    })
+    .catch((err) => reject(err));
+});
+
+const deleteVersion = (versionId) => new Promise((resolve, reject) => {
+  versionData.removeVersion(versionId)
+    .then(() => {
+      gamesVersionsData.getGameVersionsbyVersionId(versionId)
+        .then((resp) => {
+          resp.forEach((gv) => {
+            versionsPlaytestsData.removeVersionPlaytest(gv.id);
+          });
+          versionsPlaytestsData.getVersionPlaytestByVersionId(versionId)
+            .then((response) => {
+              response.forEach((vp) => {
+                deletePlaytest(vp.playtestId);
+              });
+            });
+        });
+      resolve();
+    })
+    .catch((err) => reject(err));
+});
+
+const deleteGame = (gameId) => new Promise((resolve, reject) => {
+  gameData.removeGame(gameId)
+    .then(() => {
+      gamesVersionsData.getGameVersionsbyGameId(gameId)
+        .then((resp) => {
+          resp.forEach((gv) => {
+            deleteVersion(gv.versionId);
+            gamesVersionsData.removeGameVersion(gv.id);
+          });
+        });
+      resolve();
+    })
+    .catch((err) => reject(err));
+});
+
+export default {
+  getVersionsFromGameId,
+  getPlaytestsFromVersionID,
+  getFeedbackfromPlaytestId,
+  deleteFeedback,
+  deletePlaytest,
+  deleteVersion,
+  deleteGame,
+};

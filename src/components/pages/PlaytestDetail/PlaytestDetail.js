@@ -13,7 +13,6 @@ const PlaytestDetail = (props) => {
   const [feedback, setFeedback] = useState([]);
 
   const newfeedback = () => {
-    console.warn('function called');
     feedbackData.getHighestPlaytestNumber()
       .then((resp) => {
         const tempobj = {
@@ -51,6 +50,12 @@ const PlaytestDetail = (props) => {
       .catch((err) => console.error('can not get feedback', err));
   }, [props.match.params]);
 
+  const deletePlaytest = () => {
+    smash.deletePlaytest(props.match.params.playtestId)
+      .then(() => props.history.push('/'))
+      .catch((err) => console.error('Could not delete playtest', err));
+  };
+
   const feedbackCards = feedback.map((fb) => <FeedbackCard feedback={fb} />);
 
   return (
@@ -59,7 +64,7 @@ const PlaytestDetail = (props) => {
       <div className="d-flex justify-content-around m-3">
       <Link to={`/editplaytest/${props.match.params.playtestId}`} ><button className="btn btn-warning">Edit Playtest</button></Link>
       <h3>Overall Feel {playtest.playtestFeel}</h3>
-      <button className="btn btn-danger">Delete Playtest</button>
+      <button className="btn btn-danger" onClick={deletePlaytest} >Delete Playtest</button>
       </div>
       <div className="col-12  flex-wrap">
       <div className="d-flex m-3">

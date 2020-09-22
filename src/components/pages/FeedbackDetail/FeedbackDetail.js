@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import feedbackData from '../../../helpers/data/feedbackData';
+import smash from '../../../helpers/data/smash';
 
 const FeedbackDetail = (props) => {
   const [feedback, setFeedback] = useState({});
@@ -11,6 +12,12 @@ const FeedbackDetail = (props) => {
       .then((resp) => setFeedback(resp.data))
       .catch((err) => console.error(err));
   }, [props.match.params]);
+
+  const deleteFeedback = () => {
+    smash.deleteFeedback(props.match.params.feedbackId)
+      .then(() => props.history.goBack())
+      .catch((err) => console.error('could not delete', err));
+  };
 
   return (
   <>
@@ -35,7 +42,7 @@ const FeedbackDetail = (props) => {
       </div>
       <div className="d-flex justify-content-around m-3">
       <Link to={`/editfeedback/${props.match.params.feedbackId}`}><button className="btn btn-warning">Edit Feedback</button></Link>
-      <button className="btn btn-danger">Delete Feedback</button>
+      <button className="btn btn-danger" onClick={deleteFeedback}>Delete Feedback</button>
       </div>
 
   </>

@@ -1,8 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import smash from '../../../helpers/data/smash';
 
 const GameCard = (props) => {
   const { game } = props;
+
+  const deleteGame = () => {
+    smash.deleteGame(props.gameId.gameId)
+      .then(() => props.history.push('/'))
+      .catch((err) => console.error('could not delete version', err));
+  };
 
   return (
   <div>
@@ -23,7 +30,7 @@ const GameCard = (props) => {
             <Link to={`/editgame/${props.gameId.gameId}`}>
               <button className="edbtn btn btn-warning">Edit Game</button>
             </Link>
-            <button className="edbtn btn btn-danger">Delete Game</button></div>
+            <button className="edbtn btn btn-danger" onClick={deleteGame}>Delete Game</button></div>
           : ''}
       </div>
   </div>

@@ -16,6 +16,20 @@ const getGameVersionsbyGameId = (gameId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+const getGameVersionsbyVersionId = (versionId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/gamesVersions.json?orderBy="versionId"&equalTo="${versionId}"`)
+    .then(({ data }) => resolve(utils.responseToArray(data)))
+    .catch((err) => reject(err));
+});
+
 const addGameVersion = (gvObj) => axios.post(`${baseUrl}/gamesVersions.json`, gvObj);
 
-export default { getAllGamesVersions, getGameVersionsbyGameId, addGameVersion };
+const removeGameVersion = (gvId) => axios.delete(`${baseUrl}/gamesVersions/${gvId}.json`);
+
+export default {
+  getAllGamesVersions,
+  getGameVersionsbyGameId,
+  addGameVersion,
+  getGameVersionsbyVersionId,
+  removeGameVersion,
+};
