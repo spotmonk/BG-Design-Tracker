@@ -9,7 +9,7 @@ const GetNumber = (props) => {
     feedbackData.getFeedbackIdfromNumber(reference)
       .then((feedback) => {
         feedback[0].enjoyment === 0
-          ? props.history.push(`/newfeedback/${feedback.id}`)
+          ? props.history.push(`/newfeedback/${feedback[0].id}`)
           : props.history.push('/alreadysubmitted');
       })
       .catch((err) => console.warn('can not get feedback', err));
@@ -17,7 +17,7 @@ const GetNumber = (props) => {
   return (
     <>
       <h3>What's your feedback reference number?</h3>
-      <input type="number" class="form-control" id="referenceNumber" onChange={(e) => setReference(e.target.value)} />
+      <input type="number" className="form-control" id="referenceNumber" onChange={(e) => setReference(e.target.value)} />
       <button className="btn btn-warning" onClick={submitNumber}>Submit Number</button>
     </>
   );
