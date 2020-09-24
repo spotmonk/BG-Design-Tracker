@@ -28,6 +28,7 @@ import FeedbackDetail from '../components/pages/FeedbackDetail/FeedbackDetail';
 import AuthedFeedback from '../components/pages/AuthedFeedback/AuthedFeedback';
 import GetNumber from '../components/pages/GetNumber/GetNumber';
 import AlreadySubmitted from '../components/pages/AlreadySubmitted/AlreadySubmitted';
+import Thanks from '../components/pages/Thanks/Thanks';
 
 fbConnection();
 
@@ -79,6 +80,7 @@ const App = () => {
                   <PublicRoute path="/newfeedback/:feedbackId" component={NewFeedback} authed={authed} />
                   <PublicRoute path="/feedback" component={GetNumber} authed={authed} />
                   <PublicRoute path="/alreadysubmitted" component={AlreadySubmitted} authed={authed} />
+                  <PublicRoute path="/thanks" component={Thanks} authed={authed} />
                   <PublicRoute path="/auth" component={Auth} authed={authed} />
                   <Redirect from="*" to="/home" />
                 </Switch>

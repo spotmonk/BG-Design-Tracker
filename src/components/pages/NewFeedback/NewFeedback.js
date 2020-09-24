@@ -36,7 +36,7 @@ const NewFeedback = (props) => {
       playerName: name,
     };
     feedbackData.updateFeedback(props.match.params.feedbackId, tempobj)
-      .then(() => props.history.push(`/feedback/${props.match.params.feedbackId}`))
+      .then(() => props.history.push('/thanks'))
       .catch((err) => console.error('could not update', err));
   };
 

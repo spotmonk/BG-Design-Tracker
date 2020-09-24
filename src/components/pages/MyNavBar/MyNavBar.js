@@ -28,6 +28,14 @@ const MyNavBar = (props) => {
     return <button className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={logInEvent}><i className="fab fa-google"> Log in</i></button>;
   };
 
+  const loadOptions = () => {
+    const { authed } = props;
+    if (authed) {
+      return <NavLink tag={RRNavLink} to="/NewGame"> <h4>New Game</h4> </NavLink>;
+    }
+    return <NavLink tag={RRNavLink} to="/feedback"> <h4>Provide Feedback</h4> </NavLink>;
+  };
+
   const logInEvent = (e) => {
     e.preventDefault();
     const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -43,9 +51,7 @@ const MyNavBar = (props) => {
     return (
       <Nav className="ml-auto" navbar>
         <NavItem>
-        <NavLink tag={RRNavLink} to="/NewGame">
-          <h4>New Game</h4>
-        </NavLink>
+          {loadOptions()}
         </NavItem>
         <NavItem>
           <NavLink >{loadLogOut()}</NavLink>
